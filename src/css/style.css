@@ -5,7 +5,7 @@ body {
 
 .game-screen {
     background-color: skyblue;
-    background-image: linear-gradient(180deg, rgb(13, 177, 241), white);
+   
     height: 100vh;
     width: 100vw;
 }
@@ -22,8 +22,16 @@ body {
     top: 450px;
     text-align: center;
 }
+.play-screen {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(180deg, rgb(13, 177, 241), white);
+}
 .start-screen:hover {
     background-color: darkgreen;
     cursor: pointer;
     color: white;
+}
+.hidden {
+    display: none;
 }
