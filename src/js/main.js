@@ -9,26 +9,47 @@ wizard.style.top = '200px';
 wizard.style.left = '200px';
 
 let keys = {};
+let player = {};
+let game = {};
 
 //key listeners for movement of the wizard 
-document.addEventListener('keydown', onKeyDown, false);
-document.addEventListener('keyup', onKeyUp, false);
+document.addEventListener('keydown', onKeyDown);
+document.addEventListener('keyup', onKeyUp);
 startScreen.addEventListener('click', (e) => {
     e.currentTarget.classList.add('hidden');
     playScreen.classList.remove('hidden');
     gameScore.classList.remove('hidden');
+
+    window.requestAnimationFrame(gameLoop)
+    
+
 })
 
 //setting function to 
 function onKeyDown(e) {
     keys[e.code] = true;
-    console.log(keys);
+    
 }
 function onKeyUp(e) {
     keys[e.code] = false;
-    console.log(keys);
+    
 }
+//creating the game loop
+function gameLoop() {
+   if(keys.ArrowUp) {
+ 
+   }
+   if(keys.ArrowDown) {
 
+   }
+   if(keys.ArrowLeft) {
+
+   }
+   if(keys.ArrowRight) {
+
+   }
+    window.requestAnimationFrame(gameLoop)
+}
 
 
 
