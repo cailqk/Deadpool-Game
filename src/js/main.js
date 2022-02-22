@@ -9,8 +9,13 @@ wizard.style.top = '200px';
 wizard.style.left = '200px';
 
 let keys = {};
-let player = {};
-let game = {};
+let player = {
+    x: 100,
+    y: 150
+};
+let game = {
+    speed: 3,
+};
 
 //key listeners for movement of the wizard 
 document.addEventListener('keydown', onKeyDown);
@@ -20,8 +25,12 @@ startScreen.addEventListener('click', (e) => {
     playScreen.classList.remove('hidden');
     gameScore.classList.remove('hidden');
 
+    //defining the wizard coordinates
+    wizard.style.top = player.y + 'px';
+    wizard.style.left = player.x + 'px';
+
+    //infinite loop 
     window.requestAnimationFrame(gameLoop)
-    
 
 })
 
@@ -34,20 +43,27 @@ function onKeyUp(e) {
     keys[e.code] = false;
     
 }
+
 //creating the game loop
 function gameLoop() {
+   
+
+
    if(keys.ArrowUp) {
- 
+    player.y -= game.speed;
    }
    if(keys.ArrowDown) {
-
+    player.y += game.speed;
    }
    if(keys.ArrowLeft) {
-
+    player.x -= game.speed;
    }
-   if(keys.ArrowRight) {
-
+   if(keys.ArrowRight) {    
+    player.x += game.speed;
    }
+   wizard.style.top = player.y + 'px';
+   wizard.style.left = player.x + 'px';
+   //infinite loop 
     window.requestAnimationFrame(gameLoop)
 }
 
