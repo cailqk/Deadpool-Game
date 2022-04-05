@@ -4,8 +4,7 @@ body {
 }
 
 .game-screen {
-  background-color: skyblue;
-
+  background-color: darkred;
   height: 100vh;
   width: 100vw;
 }
@@ -15,7 +14,7 @@ body {
   width: 400px;
   padding: 40px;
   border-radius: 30px;
-  background-color: lightgreen;
+  background-color: #e04141;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
@@ -23,12 +22,12 @@ body {
   text-align: center;
 }
 .play-screen {
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(180deg, rgb(13, 177, 241), white);
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(180deg, rgb(114, 0, 0), rgb(241, 173, 173));
 }
 .start-screen:hover {
-  background-color: darkgreen;
+  background-color: black;
   cursor: pointer;
   color: white;
 }
@@ -43,8 +42,24 @@ body {
 .wizard {
   z-index: 100;
   position: absolute;
-  width: 80px;
-  height: 100px;
-  background-image: url('../images/wizard.png');
+  width: 120px;
+  height: 188px;
+  background-image: url('../images/wizard1.png');
   background-size: cover;
+  
+}
+.name {
+  position: center;
+  position: absolute;
+  left: 42%;
+  top: 650px;
+  height: 60px;
+  width: 300px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 22px;
+}
+.background-image-start-screen {
+  display: block;
+  margin: 0 auto;
 }
