@@ -1,22 +1,24 @@
 //creating elements
 const gameScreen = document.querySelector('.game-screen');
-const startScreen = document.querySelector('.start-screen');
+const startButton = document.querySelector('.start-button');
 const playScreen = document.querySelector('.play-screen');
 const gameScore = document.querySelector('.game-score');
 const nameHolder = document.querySelector('.name');
 
-import * as player from './character.js';
+import * as play from './character.js';
 
 //key listeners for movement of the wizard 
 
 
-startScreen.addEventListener('click', () => {
+startButton.addEventListener('click', () => {
     if (nameHolder.value !== '') {
         gameScreen.classList.add('hidden');
         playScreen.classList.remove('hidden');
+        playScreen.appendChild(play.hero());
         gameScore.classList.remove('hidden');
-        document.addEventListener('keydown', (e) => player.onKeyDown(e));
-        document.addEventListener('keyup',(e) => player.onKeyUp(e));
+        document.addEventListener('keydown', (e) => play.onKeyDown(e));
+        document.addEventListener('keyup',(e) => play.onKeyUp(e));
+        window.requestAnimationFrame(play.gameLoop)
 
     } else {
         window.alert('Please write your name!');
@@ -24,5 +26,4 @@ startScreen.addEventListener('click', () => {
     }
 })
 
-window.requestAnimationFrame(player.gameLoop)
-playScreen.appendChild(player.hero());
+

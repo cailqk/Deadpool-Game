@@ -1,26 +1,29 @@
 const character = document.createElement('div');
+const playArea = document.querySelector('.play-screen');
 
 let keys = {};
 
 let game = {
-    speed: 3,
-    movingMultiplier: 3
+    speed: 8,
 };
 
 let player = {
     x: 100,
-    y: 150
+    y: 150,
+    width: 0,
+    height: 0
 };
 
-function onKeyDown(e) {
-// debugger
-    keys[e.key] = true;
-    gameLoop()
+// player.width = character.clientWidth;
+// player.height = character.clientHeight;
 
+function onKeyDown(e) {
+    keys[e.key] = true;
+    
 }
 function onKeyUp(e) {
     keys[e.key] = false;
-
+   
 }
 
 function hero() {
@@ -34,22 +37,35 @@ function hero() {
 //creating the game loop
 function gameLoop() {
 
-    if (keys.ArrowUp) {
-        player.y -= game.speed * game.movingMultiplier;
+    //gravity
+    let inAir = (player.y + character.clientHeight) <= playArea.clientHeight
+    if(inAir) {
+        player.y += game.speed
+    } 
+
+    if (keys.ArrowUp && player.y > 0) {
+        player.y -= game.speed * 2;
     }
-    if (keys.ArrowDown) {
-        player.y += game.speed * game.movingMultiplier;
+    if (keys.ArrowDown && inAir) {
+        player.y += game.speed;
+        if(player.y > window.innerHeight - character.clientHeight) {
+            player.y = window.innerHeight - character.clientHeight
+        }
     }
-    if (keys.ArrowLeft) {
-        player.x -= game.speed * game.movingMultiplier;
+    if (keys.ArrowLeft && player.x > 0) {
+        player.x -= game.speed;
     }
     if (keys.ArrowRight) {
-        player.x += game.speed * game.movingMultiplier;
+        player.x += game.speed;
+        if(player.x > window.innerWidth - character.clientWidth) {
+            player.x = window.innerWidth - character.clientWidth;
+        }
     }
 
     character.style.top = player.y + 'px';
     character.style.left = player.x + 'px';
 
+    requestAnimationFrame(gameLoop)
 }
 
 

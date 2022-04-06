@@ -8,7 +8,7 @@ body {
   height: 100vh;
   width: 100vw;
 }
-.start-screen {
+.start-button {
   font-size: 45px;
   height: 80px;
   width: 400px;
@@ -22,11 +22,13 @@ body {
   text-align: center;
 }
 .play-screen {
+  position: relative;
   height: 100vh;
   width: 100vw;
+  margin: 0;
   background-image: linear-gradient(180deg, rgb(114, 0, 0), rgb(241, 173, 173));
 }
-.start-screen:hover {
+.start-button:hover {
   background-color: black;
   cursor: pointer;
   color: white;
@@ -41,7 +43,7 @@ body {
 }
 .wizard {
   z-index: 100;
-  position: absolute;
+  position: fixed;
   width: 120px;
   height: 185px;
   background-image: url('../images/wizard1.png');
