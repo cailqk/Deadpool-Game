@@ -1,3 +1,5 @@
+import * as score from './score.js';
+
 const character = document.createElement('div');
 const playArea = document.querySelector('.play-screen');
 
@@ -65,6 +67,8 @@ function gameLoop() {
     character.style.top = player.y + 'px';
     character.style.left = player.x + 'px';
 
+    score.scene.score ++;
+    score.gamePoints.textContent = (score.scene.score / 10).toFixed(0);
     requestAnimationFrame(gameLoop)
 }
 

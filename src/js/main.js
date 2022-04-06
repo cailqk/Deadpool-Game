@@ -3,6 +3,7 @@ const gameScreen = document.querySelector('.game-screen');
 const startButton = document.querySelector('.start-button');
 const playScreen = document.querySelector('.play-screen');
 const gameScore = document.querySelector('.game-score');
+
 const nameHolder = document.querySelector('.name');
 
 import * as play from './character.js';
