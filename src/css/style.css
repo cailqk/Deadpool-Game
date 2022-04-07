@@ -46,14 +46,14 @@ body {
   position: fixed;
   width: 120px;
   height: 185px;
-  background-image: url('../images/wizard1.png');
+  background-image: url("../images/wizard1.png");
   background-size: cover;
 }
 .enemy {
   position: absolute;
   width: 160px;
   height: 185px;
-  background-image: url('../images/wolverine.png');
+  background-image: url("../images/wolverine.png");
   background-size: cover;
 }
 
@@ -61,15 +61,15 @@ body {
   position: fixed;
   width: 120px;
   height: 185px;
-  background-image: url('../images/shoot.png');
+  background-image: url("../images/shoot.png");
   background-size: cover;
 }
 
 .fire-ball {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  background-image: url('../images/fire-ball.png');
+  width: 120px;
+  height: 45px;
+  background-image: url("../images/fire-ball.png");
   background-size: cover;
 }
 
@@ -87,4 +87,23 @@ body {
 .background-image-start-screen {
   display: block;
   margin: 0 auto;
+}
+
+.game-over {
+  position: absolute;
+  width: 50%;
+  background-color: black;
+  top: 400px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  padding: 50px;
+}
+
+
+.blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
 }

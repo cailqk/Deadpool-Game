@@ -1,9 +1,13 @@
 import * as score from './score.js';
-import { fire } from './fire.js'
-import { enemy } from './enemy.js' 
+import { fire } from './fire.js';
+import { enemy } from './enemy.js'; 
+import { collision } from './collision.js';
+import { gameOverScreen } from './gameOver.js';
 
 const character = document.createElement('div');
 const playArea = document.querySelector('.play-screen');
+let killCounter = 0;
+let totalKills = 0;
 
 
 let keys = {};
@@ -80,6 +84,8 @@ function gameLoop(timestamp) {
         }, 500)
         fire(player)
         player.lastTimeFire = timestamp
+
+        
     }
 
 
@@ -107,9 +113,49 @@ function gameLoop(timestamp) {
         }
     })
 
+    enemies.forEach(current => {
+        if(collision(character, current)) {
+            gameOverScreen(score.scene.score, totalKills) 
+            current.parentElement.removeChild(current)
+            score.gameHealth.textContent = score.scene.health -=5;
+            killCounter++;
+            totalKills++;
+            if(killCounter >= 10) {
+                score.gameHealth.textContent = score.scene.health + 20;
+                if(score.gameHealth.textContent >= 100) {
+                    score.gameHealth.textContent = 100;
+                }
+            killCounter = 0;
+            }
+            score.scene.score += 100;
+
+            if(score.gameHealth.textContent <= 0) {
+                 gameOverScreen(score.scene.score, totalKills) 
+            }
+        }
+       fireBalls.forEach(ball => {
+           if(collision(ball, current)) {
+            current.parentElement.removeChild(current);
+            ball.parentElement.removeChild(ball);
+            killCounter++;
+            totalKills++;
+            if(killCounter >= 10) {
+                score.gameHealth.textContent = score.scene.health + 20;
+                if(score.gameHealth.textContent >= 100) {
+                    score.gameHealth.textContent = 100;
+                }
+                killCounter = 0;
+                }
+            score.scene.score += 100;
+           }
+       })
+    })
+
     score.scene.score++;
     score.gamePoints.textContent = (score.scene.score / 10).toFixed(0);
-    requestAnimationFrame(gameLoop)
+    if(score.scene.activeGame) {
+        requestAnimationFrame(gameLoop)
+    } 
 }
 
 
