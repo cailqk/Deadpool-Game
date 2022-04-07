@@ -1,5 +1,6 @@
 import * as score from './score.js';
 import { fire } from './fire.js'
+import { enemy } from './enemy.js' 
 
 const character = document.createElement('div');
 const playArea = document.querySelector('.play-screen');
@@ -9,7 +10,8 @@ let keys = {};
 
 let game = {
     speed: 4,
-    fireInterval: 1500
+    fireInterval: 500,
+    enemyInterval: 1000
 };
 
 let player = {
@@ -73,11 +75,13 @@ function gameLoop(timestamp) {
 
     if (keys[" "] && timestamp - player.lastTimeFire > game.fireInterval) {
         character.classList.add('fire');
+        setTimeout(() => {
+            character.classList.remove('fire');
+        }, 500)
         fire(player)
         player.lastTimeFire = timestamp
-    } else {
-        character.classList.remove('fire');
     }
+
 
     let fireBalls = document.querySelectorAll('.fire-ball');
     fireBalls.forEach(ball => {
@@ -86,6 +90,20 @@ function gameLoop(timestamp) {
 
         if (ball.x > window.innerWidth - ball.clientWidth) {
             ball.parentElement.removeChild(ball)
+        }
+    })
+
+    if(timestamp - score.scene.enemySpawn > game.enemyInterval + 10000 * Math.random()) {
+       enemy()
+        score.scene.enemySpawn = timestamp;
+    }
+    let enemies = document.querySelectorAll('.enemy');
+    enemies.forEach(current => {
+        current.x -= game.speed;
+        current.style.left = current.x + 'px';
+        
+        if(current.x + current.clientWidth <= 0) {
+            current.parentElement.removeChild(current)
         }
     })
 

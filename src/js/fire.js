@@ -1,6 +1,5 @@
 let screen = document.querySelector('.play-screen');
 
-
 function fire(player) {
     let fireBall = document.createElement('div');
 
