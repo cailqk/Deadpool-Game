@@ -114,45 +114,38 @@ function gameLoop(timestamp) {
     })
 
     enemies.forEach(current => {
+
         if(collision(character, current)) {
-            gameOverScreen(score.scene.score, totalKills) 
-            current.parentElement.removeChild(current)
-            score.gameHealth.textContent = score.scene.health -=5;
             killCounter++;
             totalKills++;
-            if(killCounter >= 10) {
-                score.gameHealth.textContent = score.scene.health + 20;
-                if(score.gameHealth.textContent >= 100) {
-                    score.gameHealth.textContent = 100;
-                }
-            killCounter = 0;
-            }
-            score.scene.score += 100;
+            // gameOverScreen(score.scene.score, totalKills) 
+            current.parentElement.removeChild(current)
+            score.gameHealth.textContent = score.scene.health -=5;
+
+            score.killBonus(killCounter)
+            // score.scene.score += 10;
 
             if(score.gameHealth.textContent <= 0) {
                  gameOverScreen(score.scene.score, totalKills) 
             }
         }
        fireBalls.forEach(ball => {
+
            if(collision(ball, current)) {
             current.parentElement.removeChild(current);
             ball.parentElement.removeChild(ball);
             killCounter++;
             totalKills++;
-            if(killCounter >= 10) {
-                score.gameHealth.textContent = score.scene.health + 20;
-                if(score.gameHealth.textContent >= 100) {
-                    score.gameHealth.textContent = 100;
-                }
-                killCounter = 0;
-                }
+
+            score.killBonus(killCounter)
+           
             score.scene.score += 100;
            }
        })
     })
 
     score.scene.score++;
-    score.gamePoints.textContent = (score.scene.score / 10).toFixed(0);
+    score.gamePoints.textContent = (score.scene.score / 10).toFixed(0)
     if(score.scene.activeGame) {
         requestAnimationFrame(gameLoop)
     } 

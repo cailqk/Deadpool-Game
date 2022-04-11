@@ -51,7 +51,7 @@ body {
 }
 .enemy {
   position: absolute;
-  width: 160px;
+  width: 155px;
   height: 185px;
   background-image: url("../images/wolverine.png");
   background-size: cover;
@@ -59,7 +59,7 @@ body {
 
 .fire {
   position: fixed;
-  width: 120px;
+  width: 115px;
   height: 185px;
   background-image: url("../images/shoot.png");
   background-size: cover;

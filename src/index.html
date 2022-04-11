@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" type="image/x-icon" href="images/background.png" />
     
-    <title>Wizard Game @ SoftUni</title>
+    <title>Deadpool Game</title>
   </head>
   <body>
     <div class="game-screen">
@@ -20,12 +20,16 @@
     <div class="play-screen hidden">
       <div class="game-score hidden">
         <span class="points">0</span>pts.
-        <span class="health">100</span>HP.
+        <span class="health">100</span>HP. &hearts;
       </div>
     </div>
     <div class="game-over hidden">Game Over!
-      <span class="total-score"></span>pts.
-      <span class="total-kills"></span>kills.
+      <div class="total-score-div">
+        <span class="total-score"></span> pts.
+      </div>
+      <div class="total-kills-div">
+        <span class="total-kills">0</span> kills.
+      </div>
     </div>
     
     <script src="js/main.js" type="module"></script>

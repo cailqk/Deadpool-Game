@@ -9,9 +9,6 @@ export function gameOverScreen (score, kills) {
     gameOver.classList.remove('hidden');
     screen.classList.add('blur')
 
-    totalScore.textContent = scene.score;
+    totalScore.textContent = (scene.score / 10).toFixed(0);
     totalKills.textContent = kills;
-
-
-    console.log(score, kills);
 }
