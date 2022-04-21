@@ -1,11 +1,12 @@
 import * as score from './score.js';
 import { fire } from './fire.js';
-import { enemy } from './enemy.js'; 
+import { enemy } from './enemy.js';
 import { collision } from './collision.js';
 import { gameOverScreen } from './gameOver.js';
 
-const character = document.createElement('div');
+export const character = document.createElement('div');
 const playArea = document.querySelector('.play-screen');
+
 let killCounter = 0;
 let totalKills = 0;
 
@@ -25,9 +26,6 @@ let player = {
     height: 0,
     lastTimeFire: 0
 };
-
-// player.width = character.clientWidth;
-// player.height = character.clientHeight;
 
 function onKeyDown(e) {
     keys[e.key] = true;
@@ -85,7 +83,7 @@ function gameLoop(timestamp) {
         fire(player)
         player.lastTimeFire = timestamp
 
-        
+
     }
 
 
@@ -99,56 +97,75 @@ function gameLoop(timestamp) {
         }
     })
 
-    if(timestamp - score.scene.enemySpawn > game.enemyInterval + 10000 * Math.random()) {
-       enemy()
+    if (timestamp - score.scene.enemySpawn > game.enemyInterval + 1000 * Math.random()) {
+        enemy()
         score.scene.enemySpawn = timestamp;
     }
     let enemies = document.querySelectorAll('.enemy');
     enemies.forEach(current => {
         current.x -= game.speed;
         current.style.left = current.x + 'px';
-        
-        if(current.x + current.clientWidth <= 0) {
+
+        if (current.x + current.clientWidth <= 0) {
             current.parentElement.removeChild(current)
         }
     })
 
     enemies.forEach(current => {
 
-        if(collision(character, current)) {
+        if (collision(character, current)) {
+            gameOverScreen(score.scene.score, totalKills)
             killCounter++;
             totalKills++;
-            // gameOverScreen(score.scene.score, totalKills) 
+            score.scene.kills++;
+            score.kills.textContent = score.scene.kills;
+
             current.parentElement.removeChild(current)
-            score.gameHealth.textContent = score.scene.health -=5;
+            score.gameHealth.textContent = score.scene.health -= 5;
+            if (killCounter == 10) {
+                score.scene.health += 20;
+                if (score.scene.health >= 100) {
+                    score.scene.health = 100;
+                }
+                score.gameHealth.textContent = score.scene.health;
 
-            score.killBonus(killCounter)
-            // score.scene.score += 10;
+                killCounter = 0;
+            }
 
-            if(score.gameHealth.textContent <= 0) {
-                 gameOverScreen(score.scene.score, totalKills) 
+            if (score.gameHealth.textContent <= 0) {
+                gameOverScreen(score.scene.score, totalKills)
+
             }
         }
-       fireBalls.forEach(ball => {
+        fireBalls.forEach(ball => {
 
-           if(collision(ball, current)) {
-            current.parentElement.removeChild(current);
-            ball.parentElement.removeChild(ball);
-            killCounter++;
-            totalKills++;
+            if (collision(ball, current)) {
+                current.parentElement.removeChild(current);
+                ball.parentElement.removeChild(ball);
+                killCounter++;
+                totalKills++;
+                score.scene.kills++;
+                score.kills.textContent = score.scene.kills;
+                if (killCounter == 10) {
+                    score.scene.health += 20;
+                    if (score.scene.health >= 100) {
+                        score.scene.health = 100;
+                    }
+                    score.gameHealth.textContent = score.scene.health;
 
-            score.killBonus(killCounter)
-           
-            score.scene.score += 100;
-           }
-       })
+                    killCounter = 0;
+                }
+
+                score.scene.score += 100;
+            }
+        })
     })
 
     score.scene.score++;
     score.gamePoints.textContent = (score.scene.score / 10).toFixed(0)
-    if(score.scene.activeGame) {
+    if (score.scene.activeGame) {
         requestAnimationFrame(gameLoop)
-    } 
+    }
 }
 
 

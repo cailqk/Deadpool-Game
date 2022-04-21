@@ -37,7 +37,13 @@ body {
   background-color: black;
   color: white;
   text-align: center;
+  position: relative;
 }
+
+.points {
+  font-weight: bold;
+}
+
 .hidden {
   display: none;
 }
@@ -106,4 +112,14 @@ body {
 .blur {
   filter: blur(8px);
   -webkit-filter: blur(8px);
+}
+
+.new-game {
+  font-size: 30px;
+  border-radius: 10px;  
+}
+
+.new-game:hover {
+background-color: lightgreen; 
+ 
 }
