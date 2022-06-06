@@ -32,7 +32,6 @@ startButton.addEventListener('click', () => {
 newGameButton.addEventListener('click', () => {
 
     res.reset()
-    console.log('clicked');
     // gameScreen.classList.add('hidden');
     // playScreen.classList.remove('hidden');
     playScreen.appendChild(play.hero());

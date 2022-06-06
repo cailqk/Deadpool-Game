@@ -19,7 +19,7 @@ let game = {
     enemyInterval: 1000
 };
 
-let player = {
+export let player = {
     x: 100,
     y: 150,
     width: 0,
@@ -114,14 +114,15 @@ function gameLoop(timestamp) {
     enemies.forEach(current => {
 
         if (collision(character, current)) {
-            gameOverScreen(score.scene.score, totalKills)
+            // gameOverScreen(score.scene.score, totalKills)
             killCounter++;
             totalKills++;
             score.scene.kills++;
+            score.scene.score += 10;
             score.kills.textContent = score.scene.kills;
 
             current.parentElement.removeChild(current)
-            score.gameHealth.textContent = score.scene.health -= 5;
+            score.gameHealth.textContent = score.scene.health -= 10;
             if (killCounter == 10) {
                 score.scene.health += 20;
                 if (score.scene.health >= 100) {
