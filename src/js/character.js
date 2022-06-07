@@ -134,7 +134,7 @@ function gameLoop(timestamp) {
             }
 
             if (score.gameHealth.textContent <= 0) {
-                gameOverScreen(score.scene.score, totalKills)
+                gameOverScreen(score.scene.score, score.scene.kills)
 
             }
         }

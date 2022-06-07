@@ -1,5 +1,4 @@
 import { scene } from "./score.js";
-import * as hero from "./character.js";
 import { player } from "./character.js";
 
 export function reset() {
@@ -17,11 +16,12 @@ export function reset() {
   points.textContent = scene.score;
   healthEl.textContent = scene.health;
   kills.textContent = scene.kills;
+  player.x = 100;
+  player.y = 150;
+
 
   let gameOver = document.querySelector(".game-over");
   let screen = document.querySelector(".play-screen");
-
-  hero.hero();
 
   gameOver.classList.add("hidden");
   screen.classList.remove("blur");

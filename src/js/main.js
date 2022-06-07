@@ -9,6 +9,7 @@ const nameHolder = document.querySelector('.name');
 import * as play from './character.js';
 import { gameOverScreen } from './gameOver.js';
 import * as res from './reset.js';
+import { character } from './character.js'
 
 //key listeners for movement of the wizard 
 
@@ -30,11 +31,7 @@ startButton.addEventListener('click', () => {
 })
 
 newGameButton.addEventListener('click', () => {
-
-    res.reset()
-    // gameScreen.classList.add('hidden');
-    // playScreen.classList.remove('hidden');
-    playScreen.appendChild(play.hero());
+    res.reset();
     gameScore.classList.remove('hidden');
     document.addEventListener('keydown', (e) => play.onKeyDown(e));
     document.addEventListener('keyup', (e) => play.onKeyUp(e));
