@@ -6,34 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" type="image/x-icon" href="images/background.png" />
-    
+
     <title>Deadpool Game</title>
   </head>
   <body>
     <div class="game-screen">
       <div>
-        <img class="background-image-start-screen" src="./images/background.png" alt="">
+        <img
+          class="background-image-start-screen"
+          src="./images/background.png"
+          alt=""
+        />
       </div>
       <div class="start-button">Press to Start!</div>
-      <input type="text" class="name" placeholder="Please write your name here">
+      <input
+        type="text"
+        class="name"
+        placeholder="Please write your name here"
+      />
     </div>
     <div class="play-screen hidden">
       <div class="game-score hidden">
-        <span class="points">0</span> pts.
-        <span class="health">100</span> HP. &hearts;
-        <span class="kills">0</span> kills.
+        <span class="points">0</span> pts. <span class="health">100</span> HP.
+        &hearts; <span class="kills">0</span> kills.
       </div>
     </div>
-    <div class="game-over hidden">Game Over!
-      <div class="total-score-div">
-        <span class="total-score"></span> pts.
-      </div>
+    <div class="game-over hidden">
+      Game Over!
+      <div class="total-score-div"><span class="total-score"></span> pts.</div>
       <div class="total-kills-div">
         <span class="total-kills">0</span> kills.
       </div>
       <button class="new-game">New Game</button>
     </div>
-    
+    <div class="new-level hidden"> New Level!
+    </div>
+
     <script src="js/main.js" type="module"></script>
   </body>
 </html>

@@ -10,6 +10,7 @@ import * as play from './character.js';
 import { gameOverScreen } from './gameOver.js';
 import * as res from './reset.js';
 import { character } from './character.js'
+import { enemy } from './enemy.js';
 
 //key listeners for movement of the wizard 
 

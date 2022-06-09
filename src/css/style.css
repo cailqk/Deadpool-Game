@@ -14,7 +14,7 @@ body {
   width: 400px;
   padding: 40px;
   border-radius: 30px;
-  background-color: #e04141;
+  background-color: rgb(161, 37, 37);
   position: absolute;
   left: 50%;
   transform: translate(-50%);
@@ -122,4 +122,17 @@ body {
 .new-game:hover {
 background-color: lightgreen; 
  
+}
+
+.new-level {
+  position: absolute;
+  width: 50%;
+  background-color: black;
+  top: 400px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  padding: 50px;
 }
