@@ -3,6 +3,7 @@ import { fire } from "./fire.js";
 import { enemy } from "./enemy.js";
 import { collision } from "./collision.js";
 import { gameOverScreen } from "./gameOver.js";
+import { newLevel } from "./newLevel.js";
 
 export const character = document.createElement("div");
 const playArea = document.querySelector(".play-screen");
@@ -11,10 +12,11 @@ let screen = document.querySelector(".play-screen");
 
 let killCounter = 0;
 let totalKills = 0;
+let levelKills = 0;
 
 let keys = {};
 
- let game = {
+let game = {
   speed: 4,
   fireInterval: 500,
   enemyInterval: 1000,
@@ -112,6 +114,7 @@ function gameLoop(timestamp) {
     if (collision(character, current)) {
       killCounter++;
       totalKills++;
+      levelKills++;
       score.scene.kills++;
       score.scene.score += 10;
       score.kills.textContent = score.scene.kills;
@@ -138,6 +141,7 @@ function gameLoop(timestamp) {
         ball.parentElement.removeChild(ball);
         killCounter++;
         totalKills++;
+        levelKills++;
         score.scene.kills++;
         score.kills.textContent = score.scene.kills;
         if (killCounter == 10) {
@@ -157,9 +161,20 @@ function gameLoop(timestamp) {
 
   score.scene.score++;
   score.gamePoints.textContent = (score.scene.score / 10).toFixed(0);
-  
+
   if (score.scene.activeGame) {
     requestAnimationFrame(gameLoop);
+  }
+  if (levelKills >= 4) {
+    newLevel();
+    levelKills = 0;
+    setTimeout(() => {
+      score.scene.activeGame = true;
+      newLevelScreen.classList.add("hidden");
+      screen.classList.remove("blur");
+      game.speed++;
+      requestAnimationFrame(gameLoop);
+    }, 1000);
   }
 }
 
