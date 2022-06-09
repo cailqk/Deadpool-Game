@@ -4,6 +4,7 @@ import { enemy } from "./enemy.js";
 import { collision } from "./collision.js";
 import { gameOverScreen } from "./gameOver.js";
 import { newLevel } from "./newLevel.js";
+import { newEnemy } from "./newEnemy.js";
 
 export const character = document.createElement("div");
 const playArea = document.querySelector(".play-screen");
@@ -101,6 +102,17 @@ function gameLoop(timestamp) {
     score.scene.enemySpawn = timestamp;
   }
   let enemies = document.querySelectorAll(".enemy");
+  let newEnemies = document.querySelectorAll(".new-enemy");
+
+  newEnemies.forEach((el) => {
+    el.x -= game.speed;
+    el.style.left = el.x + "px";
+
+    if (el.x + el.clientWidth <= 0) {
+      el.parentElement.removeChild(el);
+    }
+  });
+
   enemies.forEach((current) => {
     current.x -= game.speed;
     current.style.left = current.x + "px";
@@ -165,16 +177,17 @@ function gameLoop(timestamp) {
   if (score.scene.activeGame) {
     requestAnimationFrame(gameLoop);
   }
-  if (levelKills >= 4) {
+  if (levelKills >= 3) {
     newLevel();
     levelKills = 0;
+    newEnemy();
     setTimeout(() => {
       score.scene.activeGame = true;
       newLevelScreen.classList.add("hidden");
       screen.classList.remove("blur");
       game.speed++;
       requestAnimationFrame(gameLoop);
-    }, 1000);
+    }, 1600);
   }
 }
 

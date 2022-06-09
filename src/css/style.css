@@ -52,7 +52,7 @@ body {
   position: fixed;
   width: 120px;
   height: 185px;
-  background-image: url("../images/wizard1.png");
+  background-image: url("../images/deadpool-default.png");
   background-size: cover;
 }
 .enemy {
@@ -135,4 +135,13 @@ background-color: lightgreen;
   color: white;
   font-size: 50px;
   padding: 50px;
+}
+
+.new-enemy {
+  position: absolute;
+  width: 155px;
+  height: 185px;
+  background-image: url("../images/shoot.png");
+  background-color: transparent;
+  background-size: cover;
 }
